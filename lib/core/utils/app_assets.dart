@@ -28,11 +28,11 @@ class Assets {
 
   /// Assets for imagesLionel MessiDark
   /// assets/images/Lionel Messi_dark.png
-  static const String imagesLionel MessiDark = "assets/images/Lionel Messi_dark.png";
+  static const String imagesLionelMessiDark = "assets/images/Lionel Messi_dark.png";
 
   /// Assets for imagesLionelMesslLight
   /// assets/images/lionel_messl_light.png
-  static const String imagesLionelMesslLight = "assets/images/lionel_messl_light.png";
+  static const String imagesLionelMessiLight = "assets/images/lionel_messl_light.png";
 
   /// Assets for imagesMicroWifeDark
   /// assets/images/micro_wife_dark.png
