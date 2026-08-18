@@ -49,13 +49,27 @@ class Assets {
   /// Assets for imagesPopcornTimeLogoLight
   /// assets/images/PopcornTime_logo_light.png
   static const String imagesPopcornTimeLogoLight = "assets/images/PopcornTime_logo_light.png";
-
+/// Assets for sports
+  static const String imagesSports = 'assets/images/sport.png';
+  /// Assets for technology
+  static const String imagesTechnology= "assets/images/technology.png";
+  /// Assets for Health
+  static const String imagesHealth = "assets/images/helth-1.png";
   /// Assets for imagesRamDark
   /// assets/images/ram_dark.png
   static const String imagesRamDark = "assets/images/ram_dark.png";
+  /// assets for business image
+    static const String imagesBusiness = 'assets/images/busniess.png';
+    /// Assets for entertainment image
+    static const String imagesEntertainment = "assets/images/entertainment.png";
 
   /// Assets for imagesRamLight
   /// assets/images/ram_light.png
   static const String imagesRamLight = "assets/images/ram_light.png";
+  /// Assets for icons
+    static const String searchIcon = "assets/icons/search_icon.svg";
+    static const String homeIcon = "assets/icons/home_icon.png";
+    static const String languageIcon = "assets/icons/language_icon.png";
+    static const String themeIcon = "assets/icons/theme_icon.png";
 }
 
