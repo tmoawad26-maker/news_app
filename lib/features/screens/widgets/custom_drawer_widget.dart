@@ -5,11 +5,12 @@ import '../../../core/utils/app_assets.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/utils/app_styles.dart';
+import '../models/category_model.dart';
 import 'custom_list_tile.dart';
 
 class CustomDrawerWidget extends StatelessWidget {
-  const CustomDrawerWidget({super.key});
-  static const List<Widget> listTiles = [];
+  const CustomDrawerWidget({super.key, required this.selectedCategory});
+  final void Function()selectedCategory;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -20,17 +21,14 @@ class CustomDrawerWidget extends StatelessWidget {
             child: Center(
               child: Text(
                 AppStrings.newsApp,
-                style: AppStyles.textStyle24Medium.copyWith(
-                  fontWeight: .bold,
-                  color: AppColors.primaryDark,
-                ),
+                style: Theme.of(context).textTheme.displayLarge
               ),
             ),
           ),
           CustomListTile(
             leading: Image.asset(Assets.homeIcon),
             title: Text(AppStrings.goToHome, style: AppStyles.textStyle20Bold),
-            onTap: () {},
+            onTap: selectedCategory
           ),
           SizedBox(height: 24),
           Divider(indent: 20, endIndent: 20, color: AppColors.onPrimaryDark),

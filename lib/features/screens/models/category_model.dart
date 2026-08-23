@@ -17,7 +17,7 @@ class CategoryModel {
   static List<CategoryModel> categories = [
     CategoryModel(
       id: 'general',
-      imagePath: Assets.imagesEarthDark,
+      imagePath: Assets.imagesGeneral,
       title: AppStrings.general,
     ),
     CategoryModel(
@@ -28,11 +28,11 @@ class CategoryModel {
     CategoryModel(
       id: 'sports',
       imagePath: Assets.imagesSports,
-      title: AppStrings.lionelMessi,
+      title: AppStrings.sports,
     ),
     CategoryModel(
       id: 'science',
-      imagePath: Assets.imagesMicroWifeDark,
+      imagePath: Assets.imagesScience,
       title: AppStrings.science,
     ),
     CategoryModel(
