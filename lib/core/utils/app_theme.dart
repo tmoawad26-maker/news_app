@@ -20,6 +20,16 @@ class AppTheme {
       onSurface: AppColors.onSurfaceDark,
     ),
     drawerTheme: DrawerThemeData(),
+    textTheme: TextTheme(
+      headlineMedium: AppStyles.textStyle24BoldWhite.copyWith(
+        color: AppColors.onPrimaryDark,
+        fontWeight: .w500
+      ),
+      headlineLarge: AppStyles.textStyle20Bold.copyWith(
+        color: AppColors.onPrimaryDark
+      ),
+      displayLarge: AppStyles.textStyle24BoldBlack
+    ),
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.appBarDark,
       centerTitle: true,

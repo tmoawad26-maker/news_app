@@ -25,7 +25,7 @@ class ViewAllWidget extends StatelessWidget {
           Spacer(),
           Text(
             AppStrings.viewAll,
-            style: AppStyles.textStyle24Medium.copyWith(
+            style: AppStyles.textStyle24BoldBlack.copyWith(
               color: AppColors.onPrimaryDark,
             ),
           ),

@@ -4,8 +4,8 @@ import 'package:news_app/features/screens/widgets/view_all_widget.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_styles.dart';
 
-class CategoryWidget extends StatelessWidget {
-  const CategoryWidget({
+class CategoryItem extends StatelessWidget {
+  const CategoryItem({
     super.key,
     required this.categoryModel,
     required this.isLeft,
@@ -32,12 +32,12 @@ class CategoryWidget extends StatelessWidget {
             child: Image.asset(categoryModel.imagePath,),
           ),
           Positioned(
-            left: isLeft ? null : 30,
-            right: isLeft ? 30 : null,
+            left: isLeft ? null : 16,
+            right: isLeft ? 16 : null,
             top: 30,
             child: Text(
               categoryModel.title,
-              style: AppStyles.textStyle24Medium.copyWith(
+              style: AppStyles.textStyle24BoldBlack.copyWith(
                 color: AppColors.primaryDark,
               ),
             ),

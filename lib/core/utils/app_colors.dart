@@ -12,7 +12,7 @@ abstract class AppColors {
   static const Color scaffoldBackgroundDark = Color(0xff171717);
   static const Color arrowContainerDark = Colors.grey;
   static const Color arrowDark = Color(0xffFFFFFF);
-  static const Color subTitleDark = Color(0xffA0A0A0);
+  static const Color newsInfoDark = Color(0xffA0A0A0);
   static const Color errorDark = Colors.redAccent;
   static const Color onErrorDark = Colors.redAccent;
   static const headLineDark = Color(0xffFFFFFF);
@@ -31,5 +31,6 @@ abstract class AppColors {
   static const Color subTitleLight = Color(0xffA0A0A0);
   static const Color errorLight = Colors.redAccent;
   static const Color onErrorLight = Colors.redAccent;
+  static const Color transparent = Colors.transparent;
 
 }
