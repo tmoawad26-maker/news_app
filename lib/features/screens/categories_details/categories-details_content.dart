@@ -58,7 +58,7 @@ late Future<List<SourceModel>> futureSources;
                   body: TabBarView(
                       children: [
                     ...sources.map((source) => NewsListView(sources: sources,
-                      source: source.id!,)),
+                      sourceId: source.id!,)),
                   ]),
                 ),
               );

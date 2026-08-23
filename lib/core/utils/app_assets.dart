@@ -65,6 +65,7 @@ class Assets {
   /// Assets for imagesRamLight
   /// assets/images/ram_light.png
   /// Assets for news images placeholder
+    static const String placeholder = "https://www.vecteezy.com/vector-art/68351982-newspaper-icon-black-and-white-simple-design-featuring-bold-news-headline-square-image-placeholder-and-horizontal-lines-representing-text-suitable-for-media-journalism-or-press-concepts";
     static const String imagesNewsPlaceholder = "https://static.vecteezy.com/system/resources/previews/067/107/676/non_2x/newspaper-icon-with-a-growth-chart-symbolizing-news-and-progress-free-vector.jpg";
   /// Assets for icons
     static const String searchIcon = "assets/icons/search_icon.svg";

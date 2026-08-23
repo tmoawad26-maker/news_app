@@ -16,4 +16,6 @@ abstract class AppStrings {
   static const String language = "Language";
   static const String dark = "Dark";
   static const String english = "English";
+  static const String viewArticle = "View Full Article";
+  static const String unKnown = "UnKnown";
 }
