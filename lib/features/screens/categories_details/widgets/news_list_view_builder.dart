@@ -11,20 +11,18 @@ import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/helpers/build_bottom_sheet.dart';
 import '../../models/news_response.dart';
 
-class NewsListView extends StatefulWidget {
-  const NewsListView({
+class NewsListViewBuilder extends StatefulWidget {
+  const NewsListViewBuilder({
     super.key,
-    required this.sources,
     required this.sourceId,
   });
-  final List<SourceModel> sources;
   final String sourceId;
 
   @override
-  State<NewsListView> createState() => _NewsListViewState();
+  State<NewsListViewBuilder> createState() => _NewsListViewBuilderState();
 }
 
-class _NewsListViewState extends State<NewsListView> {
+class _NewsListViewBuilderState extends State<NewsListViewBuilder> {
   late Future<List<Article>> futureArticle;
   NewsApiService newsApiService = NewsApiService();
 
@@ -50,7 +48,9 @@ class _NewsListViewState extends State<NewsListView> {
           return Center(child: CircularProgressIndicator(color: Colors.blue));
         } else if (snapshot.hasData) {
           var article = snapshot.data!;
-          return ListView.separated(
+
+
+        return ListView.separated(
             padding: EdgeInsets.only(bottom: 20),
             itemBuilder: (context, index) {
               return GestureDetector(
