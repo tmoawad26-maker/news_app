@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_time_ago/get_time_ago.dart';
 import 'package:news_app/core/utils/app_colors.dart';
 import 'package:news_app/core/utils/app_styles.dart';
+import 'package:news_app/features/screens/models/category_model.dart';
 import 'package:news_app/features/screens/models/news_response.dart';
 
 import '../../../../core/utils/app_assets.dart';

@@ -84,6 +84,8 @@ class Article {
     data['content'] = this.content;
     return data;
   }
+
+
 }
 
 class Source {

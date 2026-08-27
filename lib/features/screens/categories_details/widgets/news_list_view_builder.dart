@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:news_app/core/utils/app_colors.dart';
 import 'package:news_app/core/utils/app_styles.dart';
 import 'package:news_app/core/utils/services/news_api_service.dart';
@@ -11,28 +12,53 @@ import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/helpers/build_bottom_sheet.dart';
 import '../../models/news_response.dart';
 
-class NewsListView extends StatefulWidget {
-  const NewsListView({
+class NewsListViewBuilder extends StatefulWidget {
+  const NewsListViewBuilder({
     super.key,
-    required this.sources,
     required this.sourceId,
   });
-  final List<SourceModel> sources;
   final String sourceId;
 
   @override
-  State<NewsListView> createState() => _NewsListViewState();
+  State<NewsListViewBuilder> createState() => _NewsListViewBuilderState();
 }
 
-class _NewsListViewState extends State<NewsListView> {
+class _NewsListViewBuilderState extends State<NewsListViewBuilder> {
   late Future<List<Article>> futureArticle;
   NewsApiService newsApiService = NewsApiService();
-
+   ScrollController scrollController = ScrollController();
+  int pageSize = 20;
+  int page = 1;
+  bool loadData = false;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    futureArticle = newsApiService.getTopHeadLinesNews(widget.sourceId);
+      futureArticle = newsApiService.getTopHeadLinesNews(widget.sourceId,
+          page: page,limit: pageSize);
+   scrollController.addListener(() {
+     if(scrollController.position.maxScrollExtent == scrollController.offset) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => fetchData());
+     }
+   });
+   setState(() {
+     page++;
+   });
+
+  }
+  Future<void> fetchData() async {
+    setState(() {
+      loadData = true;
+    });
+    futureArticle = newsApiService.getTopHeadLinesNews(widget.sourceId,
+        limit: pageSize,page: page);
+    loadData = false;
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    scrollController.dispose();
   }
 
   @override
@@ -47,10 +73,13 @@ class _NewsListViewState extends State<NewsListView> {
       future: futureArticle,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
+          loadData = true;
           return Center(child: CircularProgressIndicator(color: Colors.blue));
         } else if (snapshot.hasData) {
+          loadData = false;
           var article = snapshot.data!;
-          return ListView.separated(
+        return ListView.separated(
+          controller: scrollController,
             padding: EdgeInsets.only(bottom: 20),
             itemBuilder: (context, index) {
               return GestureDetector(
