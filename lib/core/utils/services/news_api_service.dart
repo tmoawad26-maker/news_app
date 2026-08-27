@@ -20,13 +20,14 @@ class NewsApiService {
      throw DioExceptionHandling.mapDioException(e, requestOptions);
    }
   }
-  Future<List<Article>> getTopHeadLinesNews(String sourceId) async {
+  Future<List<Article>> getTopHeadLinesNews(String sourceId, {String? search}) async {
    RequestOptions requestOptions = RequestOptions(path: ApiConstant.topHeadlines);
    try {
      final response = await  DioClient.instance.get(
           requestOptions.path,
          queryParameters: {
            ApiConstant.sourcesKey : sourceId,
+           ApiConstant.q: search
          }
      );
      final articleResponse = NewsResponse.fromJson(response.data);

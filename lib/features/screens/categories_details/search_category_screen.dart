@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/features/screens/categories_details/widgets/custom_search_field.dart';
 import 'package:news_app/features/screens/categories_details/widgets/news_list_view_search.dart';
+import 'package:news_app/features/screens/models/category_model.dart';
 import 'package:news_app/features/screens/models/source_response.dart';
 import '../../../core/utils/services/news_api_service.dart';
 import '../models/news_response.dart';
@@ -15,8 +16,8 @@ class SearchCategoryScreen extends StatefulWidget {
 class _SearchCategoryScreenState extends State<SearchCategoryScreen> {
  late List<Article> articles;
   SourceModel sourceModel = SourceModel();
-  // late Future<List<Article>> futureArticle;
   NewsApiService newsApiService = NewsApiService();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -35,6 +36,8 @@ class _SearchCategoryScreenState extends State<SearchCategoryScreen> {
               CustomSearchField(onChanged: onArticleSearched),
               Expanded(
                 child: NewsListViewSearch(
+                  search: categoryModel != null ? categoryModel!.id :
+                  "No Result Data",
                   sourceModel: sourceModel,)
               )
             ],
@@ -43,10 +46,13 @@ class _SearchCategoryScreenState extends State<SearchCategoryScreen> {
       ),
     );
   }
-
+    CategoryModel? categoryModel;
   onArticleSearched(String? articleSearch) {
     articles = articles.where((article) {
       return article.source!.id!.contains(articleSearch!);
     }).toList();
+    setState(() {
+
+    });
   }
 }

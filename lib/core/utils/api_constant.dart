@@ -6,5 +6,5 @@ abstract class ApiConstant
   static const sources = "top-headlines/sources";
   static const sourcesKey = "sources";
   static const category = "category";
-
+  static const q = "q";
 }

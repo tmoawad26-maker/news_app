@@ -25,12 +25,37 @@ class NewsListViewBuilder extends StatefulWidget {
 class _NewsListViewBuilderState extends State<NewsListViewBuilder> {
   late Future<List<Article>> futureArticle;
   NewsApiService newsApiService = NewsApiService();
-
+   ScrollController scrollController = ScrollController();
+  int pageSize = 20;
+  int page = 1;
+  bool loadData = false;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+      futureArticle = newsApiService.getTopHeadLinesNews(widget.sourceId);
+   scrollController.addListener(() {
+     if(scrollController.position.maxScrollExtent == scrollController.offset) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => fetchData());
+     }
+   });
+   setState(() {
+     page++;
+   });
+
+  }
+  Future<void> fetchData() async {
+    setState(() {
+      loadData = true;
+    });
     futureArticle = newsApiService.getTopHeadLinesNews(widget.sourceId);
+    loadData = false;
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    scrollController.dispose();
   }
 
   @override
@@ -45,12 +70,13 @@ class _NewsListViewBuilderState extends State<NewsListViewBuilder> {
       future: futureArticle,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
+          loadData = true;
           return Center(child: CircularProgressIndicator(color: Colors.blue));
         } else if (snapshot.hasData) {
+          loadData = false;
           var article = snapshot.data!;
-
-
         return ListView.separated(
+          controller: scrollController,
             padding: EdgeInsets.only(bottom: 20),
             itemBuilder: (context, index) {
               return GestureDetector(

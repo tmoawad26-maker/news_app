@@ -8,9 +8,10 @@ import 'news_item.dart';
 class NewsListViewSearch extends StatefulWidget {
   const NewsListViewSearch({
     super.key,
-    required this.sourceModel,
+    required this.sourceModel, required this.search,
   });
   final SourceModel sourceModel;
+  final String search;
   @override
   State<NewsListViewSearch> createState() => _NewsListViewSearchState();
 }
@@ -18,11 +19,19 @@ class NewsListViewSearch extends StatefulWidget {
 class _NewsListViewSearchState extends State<NewsListViewSearch> {
   late Future<List<Article>> articles;
   NewsApiService  newsApiService = NewsApiService();
+  List<Article> articleList = [];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    articles = newsApiService.getTopHeadLinesNews(widget.sourceModel.id ?? "");
+    articles = newsApiService.getTopHeadLinesNews(widget.sourceModel.id ?? "",
+        search: widget.search);
+    setState(() {
+      searchData();
+    });
+  }
+  Future<void> searchData() async {
+    articleList = await articles;
   }
   @override
   Widget build(BuildContext context) {
@@ -36,10 +45,10 @@ class _NewsListViewSearchState extends State<NewsListViewSearch> {
         var  article = snapshot.data!;
           return ListView.separated(
             itemBuilder: (context, index) {
-              return NewsItem(article: article[index]);
+              return NewsItem(article: articleList[index],);
             },
             separatorBuilder: (context, index) => SizedBox(height: 16),
-            itemCount: article.length,
+            itemCount: articleList.length,
           );
         }
         else {
