@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:news_app/core/utils/app_colors.dart';
 import 'package:news_app/core/utils/app_styles.dart';
 import 'package:news_app/core/utils/services/news_api_service.dart';
@@ -33,7 +34,8 @@ class _NewsListViewBuilderState extends State<NewsListViewBuilder> {
   void initState() {
     // TODO: implement initState
     super.initState();
-      futureArticle = newsApiService.getTopHeadLinesNews(widget.sourceId);
+      futureArticle = newsApiService.getTopHeadLinesNews(widget.sourceId,
+          page: page,limit: pageSize);
    scrollController.addListener(() {
      if(scrollController.position.maxScrollExtent == scrollController.offset) {
       WidgetsBinding.instance.addPostFrameCallback((_) => fetchData());
@@ -48,7 +50,8 @@ class _NewsListViewBuilderState extends State<NewsListViewBuilder> {
     setState(() {
       loadData = true;
     });
-    futureArticle = newsApiService.getTopHeadLinesNews(widget.sourceId);
+    futureArticle = newsApiService.getTopHeadLinesNews(widget.sourceId,
+        limit: pageSize,page: page);
     loadData = false;
   }
   @override
