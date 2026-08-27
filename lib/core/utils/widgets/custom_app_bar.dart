@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:news_app/core/utils/app_routes.dart';
 
 import '../../../features/screens/models/category_model.dart';
 import '../app_assets.dart';
@@ -29,7 +30,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         Padding(
           padding: EdgeInsets.only(right: 16),
-          child: SvgPicture.asset(Assets.searchIcon),
+          child: IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(AppRoutes.searchRoute);
+              },
+              icon: SvgPicture.asset(Assets.searchIcon)),
         ),
       ],
       bottom: bottom,

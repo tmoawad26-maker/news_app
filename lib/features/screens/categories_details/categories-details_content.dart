@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/core/utils/app_colors.dart';
 import 'package:news_app/core/utils/app_styles.dart';
 import 'package:news_app/core/utils/services/news_api_service.dart';
-import 'package:news_app/features/screens/categories_details/widgets/news_list_view.dart';
+import 'package:news_app/features/screens/categories_details/widgets/news_list_view_builder.dart';
 import 'package:news_app/features/screens/models/category_model.dart';
 import 'package:news_app/features/screens/models/source_response.dart';
 class CategoriesDetailsContent extends StatefulWidget {
@@ -57,7 +57,7 @@ late Future<List<SourceModel>> futureSources;
                   ),
                   body: TabBarView(
                       children: [
-                    ...sources.map((source) => NewsListView(sources: sources,
+                    ...sources.map((source) => NewsListViewBuilder(
                       sourceId: source.id!,)),
                   ]),
                 ),
